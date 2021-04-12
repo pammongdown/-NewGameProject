@@ -6,7 +6,8 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(CapsuleCollider))]
-public class Movement : MonoBehaviour
+
+public class MM : MonoBehaviour
 {
     Animator anim;
 
@@ -14,8 +15,8 @@ public class Movement : MonoBehaviour
 
     const float WALK_SPEED = .25f;
 
-    
-    
+
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -43,7 +44,7 @@ public class Movement : MonoBehaviour
             isWalking = !isWalking;
             anim.SetBool("Walk", isWalking);
         }
-            
+
 
     }
     void Move()
@@ -53,7 +54,7 @@ public class Movement : MonoBehaviour
             anim.SetFloat("MoveZ", Mathf.Clamp(Input.GetAxis("MoveZ"), -WALK_SPEED, WALK_SPEED));
             anim.SetFloat("MoveX", Mathf.Clamp(Input.GetAxis("MoveX"), -WALK_SPEED, WALK_SPEED));
 
-            
+
             //if(Input.GetAxis("MoveZ") < 0)
             //anim.SetFloat("MoveZ", -.25f);
             //else if(Input.GetAxis("MoveZ") > 0)
@@ -74,7 +75,7 @@ public class Movement : MonoBehaviour
             anim.SetFloat("MoveZ", Input.GetAxis("MoveZ"));
             anim.SetFloat("MoveX", Input.GetAxis("MoveX"));
         }
-        
+
     }
     void Jump()
     {
@@ -83,5 +84,4 @@ public class Movement : MonoBehaviour
             anim.SetTrigger("Jump");
         }
     }
-    
 }

@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ThirdPersonCameraController : MonoBehaviour
+public class ThirdPersonCC : MonoBehaviour
 {
     public float RotationSpeed = 1;
     public Transform Target, Player;
     float mouseX, mouseY;
-         
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,6 +37,6 @@ public class ThirdPersonCameraController : MonoBehaviour
             Target.rotation = Quaternion.Euler(mouseY, mouseX, 0);
             Player.rotation = Quaternion.Euler(0, mouseX, 0);
         }
-        
+
     }
 }
