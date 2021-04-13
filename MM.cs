@@ -15,12 +15,14 @@ public class MM : MonoBehaviour
     const float WALK_SPEED = .25f;
     public float jumpForce = 2.0f;
     public Vector3 jump;
+    public float distToGround;
     Rigidbody rb;
 
     void Awake()
     {
         anim = GetComponent<Animator>();
         jump = new Vector3(0.0f, 2.0f, 0.0f);
+        distToGround = collider.bounds.extents.y;
     }
     void Update()
     {
@@ -67,7 +69,6 @@ public class MM : MonoBehaviour
         {
             anim.SetTrigger("Jump");
             rb.AddForce(jump * jumpForce, ForceMode.Impulse);
-            isGrounded = false;
         }
     }
 }
