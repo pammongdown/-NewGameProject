@@ -14,16 +14,15 @@ public class MM : MonoBehaviour
     bool isWalking = false;
 
     const float WALK_SPEED = .25f;
+    public float jumpForce = 2.0f;
+    public Vector3 jump;
+    //Rigidbody rb;
 
-
-
-    // Start is called before the first frame update
     void Awake()
     {
         anim = GetComponent<Animator>();
+        jump = new Vector3(0.0f, 2.0f, 0.0f);
     }
-
-    // Update is called once per frame
     void Update()
     {
         Walking();
@@ -53,22 +52,6 @@ public class MM : MonoBehaviour
         {
             anim.SetFloat("MoveZ", Mathf.Clamp(Input.GetAxis("MoveZ"), -WALK_SPEED, WALK_SPEED));
             anim.SetFloat("MoveX", Mathf.Clamp(Input.GetAxis("MoveX"), -WALK_SPEED, WALK_SPEED));
-
-
-            //if(Input.GetAxis("MoveZ") < 0)
-            //anim.SetFloat("MoveZ", -.25f);
-            //else if(Input.GetAxis("MoveZ") > 0)
-            // anim.SetFloat("MoveZ", .25f);
-            //else
-            // anim.SetFloat("MoveZ", 0);
-
-            //if (Input.GetAxis("MoveX") < 0)
-            //anim.SetFloat("MoveX", -.25f);
-            //else if (Input.GetAxis("MoveX") > 0)
-            //anim.SetFloat("MoveX", .25f);
-            //else
-            // anim.SetFloat("MoveX", 0);
-
         }
         else
         {
@@ -82,6 +65,7 @@ public class MM : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             anim.SetTrigger("Jump");
+            //rb.AddForce(jump * jumpForce, ForceMode.Impulse);
         }
     }
 }
