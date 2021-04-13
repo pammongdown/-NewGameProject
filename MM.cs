@@ -63,7 +63,7 @@ public class MM : MonoBehaviour
     }
     void Jump()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded())
         {
             anim.SetTrigger("Jump");
             rb.AddForce(jump * jumpForce, ForceMode.Impulse);
