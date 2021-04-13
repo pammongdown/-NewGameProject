@@ -12,7 +12,6 @@ public class MM : MonoBehaviour
     Animator anim;
 
     bool isWalking = false;
-    bool isGrounded;
     const float WALK_SPEED = .25f;
     public float jumpForce = 2.0f;
     public Vector3 jump;
@@ -35,10 +34,6 @@ public class MM : MonoBehaviour
     {
         anim.SetFloat("Turn", Input.GetAxis("Horizontal"));
     }
-    void OnCollisionStay(){
-        isGrounded = true;
-    }
-
     void Walking()
     {
         if (Input.GetKeyDown(KeyCode.LeftShift))
@@ -62,6 +57,9 @@ public class MM : MonoBehaviour
             anim.SetFloat("MoveX", Input.GetAxis("MoveX"));
         }
 
+    }
+    bool isGrounded(){
+        return Physics.Raycast(transform.position, -Vector3.up, distToGround + 0.1);
     }
     void Jump()
     {
