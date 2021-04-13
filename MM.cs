@@ -12,11 +12,11 @@ public class MM : MonoBehaviour
     Animator anim;
 
     bool isWalking = false;
-
+    bool isGrounded;
     const float WALK_SPEED = .25f;
     public float jumpForce = 2.0f;
     public Vector3 jump;
-    //Rigidbody rb;
+    Rigidbody rb;
 
     void Awake()
     {
@@ -34,6 +34,9 @@ public class MM : MonoBehaviour
     void Turning()
     {
         anim.SetFloat("Turn", Input.GetAxis("Horizontal"));
+    }
+    void OnCollisionStay(){
+        isGrounded = true;
     }
 
     void Walking()
@@ -62,10 +65,11 @@ public class MM : MonoBehaviour
     }
     void Jump()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             anim.SetTrigger("Jump");
-            //rb.AddForce(jump * jumpForce, ForceMode.Impulse);
+            rb.AddForce(jump * jumpForce, ForceMode.Impulse);
+            isGrounded = false;
         }
     }
 }
